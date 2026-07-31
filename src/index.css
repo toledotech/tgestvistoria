@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sistema de Design para Despachante - Cores HSL profissionais */
+
+@layer base {
+  :root {
+    /* Cores Base - Tom cinza-azulado suave */
+    --background: 220 20% 97%;
+    --foreground: 215 30% 12%;
+
+    /* Cards e Elementos - Branco com toque azulado */
+    --card: 220 30% 99%;
+    --card-foreground: 215 30% 12%;
+
+    --popover: 220 30% 99%;
+    --popover-foreground: 215 30% 12%;
+
+    /* Cores Primárias - Azul moderno e elegante */
+    --primary: 214 88% 42%;
+    --primary-foreground: 220 30% 99%;
+    --primary-hover: 214 88% 36%;
+    --primary-light: 214 88% 92%;
+
+    /* Cores Secundárias - Cinza azulado claro */
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 215 25% 20%;
+
+    /* Muted - Tons neutros suaves */
+    --muted: 220 18% 95%;
+    --muted-foreground: 215 18% 42%;
+
+    /* Accent - Verde esmeralda moderno */
+    --accent: 158 72% 45%;
+    --accent-foreground: 220 30% 99%;
+    --accent-light: 158 72% 92%;
+
+    /* Estados com cores mais harmoniosas */
+    --success: 158 72% 45%;
+    --success-foreground: 220 30% 99%;
+    --success-light: 158 72% 92%;
+    
+    --warning: 38 88% 55%;
+    --warning-foreground: 220 30% 99%;
+    --warning-light: 38 88% 92%;
+    
+    --destructive: 0 72% 58%;
+    --destructive-foreground: 220 30% 99%;
+    --destructive-light: 0 72% 92%;
+
+    /* Info - Azul claro complementar */
+    --info: 200 88% 52%;
+    --info-foreground: 220 30% 99%;
+    --info-light: 200 88% 92%;
+
+    /* Elementos de Interface */
+    --border: 220 15% 75%;
+    --input: 0 0% 100%;
+    --ring: 214 88% 42%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar com tons mais elegantes */
+    --sidebar-background: 220 25% 98%;
+    --sidebar-foreground: 215 30% 12%;
+    --sidebar-primary: 214 88% 42%;
+    --sidebar-primary-foreground: 220 30% 99%;
+    --sidebar-accent: 220 20% 93%;
+    --sidebar-accent-foreground: 215 25% 20%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 214 88% 42%;
+
+    /* Gradients modernos e suaves */
+    --gradient-primary: linear-gradient(135deg, hsl(214 88% 42%) 0%, hsl(214 88% 52%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(158 72% 45%) 0%, hsl(158 72% 55%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(38 88% 55%) 0%, hsl(38 88% 65%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(214 88% 42%) 0%, hsl(200 88% 52%) 50%, hsl(158 72% 45%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(220 30% 99%) 0%, hsl(220 25% 98%) 100%);
+
+    /* Shadows mais suaves e modernas */
+    --shadow-card: 0 2px 8px -2px hsl(214 88% 42% / 0.08), 0 1px 3px -1px hsl(214 88% 42% / 0.06);
+    --shadow-hover: 0 8px 25px -8px hsl(214 88% 42% / 0.15), 0 4px 12px -4px hsl(214 88% 42% / 0.1);
+    --shadow-glow: 0 0 20px hsl(214 88% 42% / 0.15);
+
+    /* Animations suaves */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
