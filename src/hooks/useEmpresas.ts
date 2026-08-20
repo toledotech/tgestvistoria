@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { useToast } from '@/hooks/use-toast'
+import type { UserRole } from '@/hooks/usePermissions'
 
 export interface Empresa {
   id: string
@@ -79,9 +80,33 @@ export function useEmpresas() {
     }
   }
 
+  const createUserForEmpresa = async (
+    empresaId: string,
+    nome: string,
+    email: string,
+    password: string,
+    role: UserRole = 'admin'
+  ) => {
+    try {
+      const { error } = await supabase.rpc('supermaster_create_user', {
+        p_empresa_id: empresaId,
+        p_email: email,
+        p_password: password,
+        p_nome: nome,
+        p_role: role,
+      })
+      if (error) throw error
+      toast({ title: "Sucesso", description: "Usuário criado" })
+    } catch (error) {
+      console.error('Erro ao criar usuário:', error)
+      toast({ title: "Erro", description: "Não foi possível criar o usuário", variant: "destructive" })
+      throw error
+    }
+  }
+
   useEffect(() => {
     fetchEmpresas()
   }, [])
 
-  return { empresas, loading, createEmpresa, updateEmpresa, deleteEmpresa, refetch: fetchEmpresas }
+  return { empresas, loading, createEmpresa, updateEmpresa, deleteEmpresa, createUserForEmpresa, refetch: fetchEmpresas }
 }

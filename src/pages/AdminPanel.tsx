@@ -25,13 +25,19 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Building2, Plus, Pencil, Trash2 } from "lucide-react"
+import { Building2, Plus, Pencil, Trash2, UserPlus } from "lucide-react"
 import { useEmpresas, type Empresa } from "@/hooks/useEmpresas"
+import type { UserRole } from "@/hooks/usePermissions"
 
 const PLANOS = ["freemium", "básico", "profissional", "enterprise"]
+const PERFIS: { value: UserRole; label: string }[] = [
+  { value: "admin", label: "Administrador" },
+  { value: "gerente", label: "Gerente" },
+  { value: "funcionario", label: "Funcionário" },
+]
 
 export default function AdminPanel() {
-  const { empresas, loading, createEmpresa, updateEmpresa, deleteEmpresa } = useEmpresas()
+  const { empresas, loading, createEmpresa, updateEmpresa, deleteEmpresa, createUserForEmpresa } = useEmpresas()
 
   const [createOpen, setCreateOpen] = useState(false)
   const [nome, setNome] = useState("")
@@ -46,6 +52,13 @@ export default function AdminPanel() {
 
   const [deleteTarget, setDeleteTarget] = useState<Empresa | null>(null)
   const [deleting, setDeleting] = useState(false)
+
+  const [userTarget, setUserTarget] = useState<Empresa | null>(null)
+  const [userNome, setUserNome] = useState("")
+  const [userEmail, setUserEmail] = useState("")
+  const [userPassword, setUserPassword] = useState("")
+  const [userRole, setUserRole] = useState<UserRole>("admin")
+  const [creatingUser, setCreatingUser] = useState(false)
 
   const handleCreate = async () => {
     if (!nome.trim()) return
@@ -84,6 +97,22 @@ export default function AdminPanel() {
       setDeleteTarget(null)
     } finally {
       setDeleting(false)
+    }
+  }
+
+  const openNewUser = (empresa: Empresa) => {
+    setUserTarget(empresa)
+    setUserNome(""); setUserEmail(""); setUserPassword(""); setUserRole("admin")
+  }
+
+  const handleCreateUser = async () => {
+    if (!userTarget || !userNome.trim() || !userEmail.trim() || !userPassword) return
+    setCreatingUser(true)
+    try {
+      await createUserForEmpresa(userTarget.id, userNome.trim(), userEmail.trim(), userPassword, userRole)
+      setUserTarget(null)
+    } finally {
+      setCreatingUser(false)
     }
   }
 
@@ -128,10 +157,13 @@ export default function AdminPanel() {
                     <TableCell className="font-mono">{new Date(e.created_at).toLocaleDateString('pt-BR')}</TableCell>
                     <TableCell>
                       <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => openEdit(e)}>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" title="Novo usuário" onClick={() => openNewUser(e)}>
+                          <UserPlus className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" title="Editar" onClick={() => openEdit(e)}>
                           <Pencil className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive hover:text-destructive" onClick={() => setDeleteTarget(e)}>
+                        <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive hover:text-destructive" title="Excluir" onClick={() => setDeleteTarget(e)}>
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
@@ -196,6 +228,47 @@ export default function AdminPanel() {
           <DialogFooter>
             <Button variant="ghost" onClick={() => setEditing(null)}>Cancelar</Button>
             <Button onClick={handleEditSave} disabled={saving || !editNome.trim()}>{saving ? "Salvando..." : "Salvar"}</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Novo usuário da empresa */}
+      <Dialog open={!!userTarget} onOpenChange={(v) => !v && setUserTarget(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Novo usuário — {userTarget?.nome}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3 py-2">
+            <div className="space-y-1.5">
+              <Label>Nome *</Label>
+              <Input value={userNome} onChange={e => setUserNome(e.target.value)} />
+            </div>
+            <div className="space-y-1.5">
+              <Label>E-mail *</Label>
+              <Input type="email" value={userEmail} onChange={e => setUserEmail(e.target.value)} />
+            </div>
+            <div className="space-y-1.5">
+              <Label>Senha *</Label>
+              <Input type="password" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
+            </div>
+            <div className="space-y-1.5">
+              <Label>Perfil</Label>
+              <Select value={userRole} onValueChange={(v) => setUserRole(v as UserRole)}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {PERFIS.map(p => <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setUserTarget(null)}>Cancelar</Button>
+            <Button
+              onClick={handleCreateUser}
+              disabled={creatingUser || !userNome.trim() || !userEmail.trim() || !userPassword}
+            >
+              {creatingUser ? "Criando..." : "Criar usuário"}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
