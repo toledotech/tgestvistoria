@@ -36,15 +36,15 @@ export default function Financeiro() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card><CardContent className="pt-6">
           <p className="text-sm text-muted-foreground">Receitas confirmadas</p>
-          <p className="text-2xl font-bold text-green-600">R$ {stats.receitas.toFixed(2)}</p>
+          <p className="text-2xl font-bold font-mono text-primary">R$ {stats.receitas.toFixed(2)}</p>
         </CardContent></Card>
         <Card><CardContent className="pt-6">
           <p className="text-sm text-muted-foreground">Despesas confirmadas</p>
-          <p className="text-2xl font-bold text-red-600">R$ {stats.despesas.toFixed(2)}</p>
+          <p className="text-2xl font-bold font-mono text-destructive">R$ {stats.despesas.toFixed(2)}</p>
         </CardContent></Card>
         <Card><CardContent className="pt-6">
           <p className="text-sm text-muted-foreground">Pendente</p>
-          <p className="text-2xl font-bold">R$ {stats.pendentes.toFixed(2)}</p>
+          <p className="text-2xl font-bold font-mono">R$ {stats.pendentes.toFixed(2)}</p>
         </CardContent></Card>
       </div>
 

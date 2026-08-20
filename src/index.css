@@ -2,91 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Sistema de Design para Despachante - Cores HSL profissionais */
+/* Design System ToledoTech v2.0 — Digital Futurista (dark, ergonômico) */
 
 @layer base {
   :root {
-    /* Cores Base - Tom cinza-azulado suave */
-    --background: 220 20% 97%;
-    --foreground: 215 30% 12%;
+    /* Cores Base */
+    --background: 216 28% 7%;
+    --foreground: 213 27% 84%;
 
-    /* Cards e Elementos - Branco com toque azulado */
-    --card: 220 30% 99%;
-    --card-foreground: 215 30% 12%;
+    /* Cards, modais, sidebars */
+    --card: 223 42% 18%;
+    --card-foreground: 213 27% 84%;
 
-    --popover: 220 30% 99%;
-    --popover-foreground: 215 30% 12%;
+    --popover: 223 42% 18%;
+    --popover-foreground: 213 27% 84%;
 
-    /* Cores Primárias - Azul moderno e elegante */
-    --primary: 214 88% 42%;
-    --primary-foreground: 220 30% 99%;
-    --primary-hover: 214 88% 36%;
-    --primary-light: 214 88% 92%;
+    /* Primária — verde neon (CTAs, sucesso, branding) */
+    --primary: 160 64% 52%;
+    --primary-foreground: 216 28% 9%;
+    --primary-hover: 160 84% 30%;
+    --primary-light: 160 50% 20%;
 
-    /* Cores Secundárias - Cinza azulado claro */
-    --secondary: 220 15% 94%;
-    --secondary-foreground: 215 25% 20%;
+    /* Secundária — ações neutras/ghost */
+    --secondary: 221 36% 23%;
+    --secondary-foreground: 213 27% 84%;
 
-    /* Muted - Tons neutros suaves */
-    --muted: 220 18% 95%;
-    --muted-foreground: 215 18% 42%;
+    /* Muted — tons neutros discretos */
+    --muted: 219 40% 10%;
+    --muted-foreground: 215 16% 47%;
 
-    /* Accent - Verde esmeralda moderno */
-    --accent: 158 72% 45%;
-    --accent-foreground: 220 30% 99%;
-    --accent-light: 158 72% 92%;
+    /* Accent — azul de seleção (foco/hover/estado ativo) */
+    --accent: 217 41% 20%;
+    --accent-foreground: 213 86% 73%;
+    --accent-light: 217 35% 14%;
 
-    /* Estados com cores mais harmoniosas */
-    --success: 158 72% 45%;
-    --success-foreground: 220 30% 99%;
-    --success-light: 158 72% 92%;
-    
-    --warning: 38 88% 55%;
-    --warning-foreground: 220 30% 99%;
-    --warning-light: 38 88% 92%;
-    
-    --destructive: 0 72% 58%;
-    --destructive-foreground: 220 30% 99%;
-    --destructive-light: 0 72% 92%;
+    /* Estados semânticos */
+    --success: 160 64% 52%;
+    --success-foreground: 216 28% 9%;
+    --success-light: 160 50% 16%;
 
-    /* Info - Azul claro complementar */
-    --info: 200 88% 52%;
-    --info-foreground: 220 30% 99%;
-    --info-light: 200 88% 92%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 216 28% 9%;
+    --warning-light: 43 60% 16%;
+
+    --destructive: 0 91% 71%;
+    --destructive-foreground: 216 28% 9%;
+    --destructive-light: 0 55% 18%;
+
+    --info: 213 94% 68%;
+    --info-foreground: 216 28% 9%;
+    --info-light: 213 50% 18%;
 
     /* Elementos de Interface */
-    --border: 220 15% 75%;
-    --input: 0 0% 100%;
-    --ring: 214 88% 42%;
+    --border: 221 36% 23%;
+    --input: 219 40% 10%;
+    --ring: 219 42% 31%;
 
-    --radius: 0.5rem;
+    --radius: 0.625rem;
 
-    /* Sidebar com tons mais elegantes */
-    --sidebar-background: 220 25% 98%;
-    --sidebar-foreground: 215 30% 12%;
-    --sidebar-primary: 214 88% 42%;
-    --sidebar-primary-foreground: 220 30% 99%;
-    --sidebar-accent: 220 20% 93%;
-    --sidebar-accent-foreground: 215 25% 20%;
-    --sidebar-border: 220 15% 88%;
-    --sidebar-ring: 214 88% 42%;
+    /* Sidebar */
+    --sidebar-background: 219 40% 10%;
+    --sidebar-foreground: 213 27% 84%;
+    --sidebar-primary: 160 64% 52%;
+    --sidebar-primary-foreground: 216 28% 9%;
+    --sidebar-accent: 217 41% 20%;
+    --sidebar-accent-foreground: 213 86% 73%;
+    --sidebar-border: 221 36% 23%;
+    --sidebar-ring: 219 42% 31%;
 
-    /* Gradients modernos e suaves */
-    --gradient-primary: linear-gradient(135deg, hsl(214 88% 42%) 0%, hsl(214 88% 52%) 100%);
-    --gradient-success: linear-gradient(135deg, hsl(158 72% 45%) 0%, hsl(158 72% 55%) 100%);
-    --gradient-warning: linear-gradient(135deg, hsl(38 88% 55%) 0%, hsl(38 88% 65%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(214 88% 42%) 0%, hsl(200 88% 52%) 50%, hsl(158 72% 45%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(220 30% 99%) 0%, hsl(220 25% 98%) 100%);
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(160 64% 52%) 0%, hsl(160 84% 40%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(160 64% 52%) 0%, hsl(160 84% 40%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(43 96% 56%) 0%, hsl(38 88% 45%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(160 64% 52%) 0%, hsl(213 94% 68%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(223 42% 18%) 0%, hsl(221 36% 23%) 100%);
 
-    /* Shadows mais suaves e modernas */
-    --shadow-card: 0 2px 8px -2px hsl(214 88% 42% / 0.08), 0 1px 3px -1px hsl(214 88% 42% / 0.06);
-    --shadow-hover: 0 8px 25px -8px hsl(214 88% 42% / 0.15), 0 4px 12px -4px hsl(214 88% 42% / 0.1);
-    --shadow-glow: 0 0 20px hsl(214 88% 42% / 0.15);
+    /* Shadows / glow (opacidade baixa — ergonomia para uso prolongado) */
+    --shadow-card: 0 2px 8px -2px hsl(219 40% 4% / 0.4), 0 1px 3px -1px hsl(219 40% 4% / 0.3);
+    --shadow-hover: 0 8px 25px -8px hsl(219 40% 4% / 0.5), 0 4px 12px -4px hsl(219 40% 4% / 0.35);
+    --shadow-glow: 0 0 15px hsl(160 64% 52% / 0.12);
 
-    /* Animations suaves */
+    /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-
   }
 }
 
@@ -96,6 +94,12 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer utilities {
+  .font-tabular {
+    @apply font-mono;
   }
 }

@@ -58,10 +58,10 @@ export function AppSidebar() {
       })
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-blue-800">
-      <SidebarContent className="bg-gradient-to-b from-blue-900 to-blue-800">
+    <Sidebar collapsible="icon" className="border-r border-sidebar-border">
+      <SidebarContent className="bg-sidebar">
         <SidebarGroup className="px-3 pt-6 pb-4">
-          <SidebarGroupLabel className={`${isCollapsed ? 'hidden' : 'block'} text-blue-300 font-semibold uppercase tracking-widest text-xs mb-2`}>
+          <SidebarGroupLabel className={`${isCollapsed ? 'hidden' : 'block'} text-muted-foreground font-semibold uppercase tracking-widest text-xs mb-2`}>
             Menu Principal
           </SidebarGroupLabel>
 
@@ -75,21 +75,21 @@ export function AppSidebar() {
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group relative w-full ${
                         isActive
-                          ? 'bg-white/15 text-cyan-300 shadow-md'
-                          : 'text-blue-200 hover:bg-white/20 hover:text-cyan-300'
+                          ? 'bg-sidebar-accent text-sidebar-accent-foreground border border-sidebar-ring'
+                          : 'text-sidebar-foreground/70 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground'
                       }`
                     }
                   >
                     {({ isActive }) => (
                       <>
                         <div className="p-1.5 shrink-0">
-                          <item.icon className="h-4 w-4 text-white" />
+                          <item.icon className="h-4 w-4" />
                         </div>
                         {!isCollapsed && (
                           <span className="font-medium text-sm">{item.title}</span>
                         )}
                         {isActive && !isCollapsed && (
-                          <div className="absolute right-3 w-1 h-5 bg-white/70 rounded-full"></div>
+                          <div className="absolute right-3 w-1 h-5 bg-primary rounded-full"></div>
                         )}
                       </>
                     )}

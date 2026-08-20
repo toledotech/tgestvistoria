@@ -45,14 +45,14 @@ export default function Dashboard() {
             <p className="text-sm text-muted-foreground">Pendentes</p>
             <p className="text-2xl font-bold">{kpis.pendentes.length}</p>
           </div>
-          <Clock className="h-8 w-8 text-amber-500 opacity-70" />
+          <Clock className="h-8 w-8 text-warning opacity-70" />
         </CardContent></Card>
         <Card><CardContent className="pt-6 flex items-center justify-between">
           <div>
             <p className="text-sm text-muted-foreground">Receita do mês</p>
-            <p className="text-2xl font-bold">R$ {kpis.receitaMes.toFixed(2)}</p>
+            <p className="text-2xl font-bold font-mono">R$ {kpis.receitaMes.toFixed(2)}</p>
           </div>
-          <DollarSign className="h-8 w-8 text-green-600 opacity-70" />
+          <DollarSign className="h-8 w-8 text-primary opacity-70" />
         </CardContent></Card>
         <Card><CardContent className="pt-6 flex items-center justify-between">
           <div>

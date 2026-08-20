@@ -208,7 +208,7 @@ export default function Veiculos() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+            <AlertDialogAction onClick={confirmDelete} className="border border-destructive/40 bg-destructive/15 text-destructive hover:bg-destructive/25">
               Excluir
             </AlertDialogAction>
           </AlertDialogFooter>
