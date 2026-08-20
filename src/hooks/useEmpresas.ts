@@ -66,9 +66,22 @@ export function useEmpresas() {
     }
   }
 
+  const deleteEmpresa = async (id: string) => {
+    try {
+      const { error } = await supabase.rpc('supermaster_delete_empresa', { p_empresa_id: id })
+      if (error) throw error
+      toast({ title: "Sucesso", description: "Empresa excluída" })
+      await fetchEmpresas()
+    } catch (error) {
+      console.error('Erro ao excluir empresa:', error)
+      toast({ title: "Erro", description: "Não foi possível excluir a empresa", variant: "destructive" })
+      throw error
+    }
+  }
+
   useEffect(() => {
     fetchEmpresas()
   }, [])
 
-  return { empresas, loading, createEmpresa, updateEmpresa, refetch: fetchEmpresas }
+  return { empresas, loading, createEmpresa, updateEmpresa, deleteEmpresa, refetch: fetchEmpresas }
 }
