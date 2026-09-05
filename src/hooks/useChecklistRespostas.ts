@@ -43,7 +43,7 @@ export function useChecklistResposta(ordemVistoriaId: string | undefined, templa
       } else if (templateId) {
         const { data: created, error: createError } = await supabase
           .from('checklist_respostas')
-          .insert([{ ordem_vistoria_id: ordemVistoriaId, template_id: templateId, respostas: {} }])
+          .insert([{ ordem_vistoria_id: ordemVistoriaId, template_id: templateId, respostas: {} }] as any)
           .select()
           .single()
         if (createError) throw createError
@@ -62,7 +62,7 @@ export function useChecklistResposta(ordemVistoriaId: string | undefined, templa
     try {
       const { data, error } = await supabase
         .from('checklist_respostas')
-        .update({ respostas })
+        .update({ respostas } as any)
         .eq('id', resposta.id)
         .select()
         .single()

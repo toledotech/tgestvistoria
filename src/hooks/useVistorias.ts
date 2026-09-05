@@ -75,7 +75,7 @@ export function useVistorias() {
     try {
       const { data, error } = await supabase
         .from('ordens_vistoria')
-        .insert([ordemData])
+        .insert([ordemData] as any)
         .select(SELECT_WITH_JOINS)
         .single()
 

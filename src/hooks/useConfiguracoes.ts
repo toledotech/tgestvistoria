@@ -46,7 +46,7 @@ export function useConfiguracoes() {
       } else {
         const { data: created, error: createError } = await supabase
           .from('configuracoes_empresa')
-          .insert([{}])
+          .insert([{}] as any)
           .select()
           .single()
         if (createError) throw createError

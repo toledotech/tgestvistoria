@@ -51,7 +51,7 @@ export function useVeiculos() {
     try {
       const { data, error } = await supabase
         .from('veiculos')
-        .insert([veiculoData])
+        .insert([veiculoData] as any)
         .select()
         .single()
 

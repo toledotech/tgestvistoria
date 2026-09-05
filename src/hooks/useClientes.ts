@@ -51,7 +51,7 @@ export function useClientes() {
     try {
       const { data, error } = await supabase
         .from('clientes')
-        .insert([clienteData])
+        .insert([clienteData] as any)
         .select()
         .single()
 

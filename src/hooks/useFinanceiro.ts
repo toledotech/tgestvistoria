@@ -57,7 +57,7 @@ export function useFinanceiro() {
 
   const createTransacao = async (transacaoData: CreateTransacaoData) => {
     try {
-      const { data, error } = await supabase.from('transacoes_financeiras').insert([transacaoData]).select().single()
+      const { data, error } = await supabase.from('transacoes_financeiras').insert([transacaoData] as any).select().single()
       if (error) throw error
       setTransacoes(prev => [data, ...prev])
       toast({ title: "Sucesso", description: "Transação registrada" })

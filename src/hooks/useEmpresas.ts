@@ -36,9 +36,9 @@ export function useEmpresas() {
     try {
       const { error } = await supabase.rpc('supermaster_create_empresa', {
         p_nome: nome,
-        p_admin_email: adminEmail || null,
-        p_admin_password: adminPassword || null,
-        p_admin_nome: adminNome || null,
+        p_admin_email: adminEmail || undefined,
+        p_admin_password: adminPassword || undefined,
+        p_admin_nome: adminNome || undefined,
       })
       if (error) throw error
       toast({ title: "Sucesso", description: "Empresa criada" })
@@ -54,9 +54,9 @@ export function useEmpresas() {
     try {
       const { error } = await supabase.rpc('supermaster_update_empresa', {
         p_empresa_id: id,
-        p_nome: changes.nome ?? null,
-        p_plano: changes.plano ?? null,
-        p_ativo: changes.ativo ?? null,
+        p_nome: changes.nome ?? undefined,
+        p_plano: changes.plano ?? undefined,
+        p_ativo: changes.ativo ?? undefined,
       })
       if (error) throw error
       toast({ title: "Sucesso", description: "Empresa atualizada" })

@@ -51,7 +51,7 @@ export function useChecklistTemplates() {
     try {
       const { data, error } = await supabase
         .from('checklist_templates')
-        .insert([{ tipo_vistoria, nome, itens: [] }])
+        .insert([{ tipo_vistoria, nome, itens: [] }] as any)
         .select()
         .single()
 

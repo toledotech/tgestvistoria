@@ -39,7 +39,7 @@ export function useCompromissos() {
 
   const createCompromisso = async (compromissoData: CreateCompromissoData) => {
     try {
-      const { data, error } = await supabase.from('compromissos').insert([compromissoData]).select().single()
+      const { data, error } = await supabase.from('compromissos').insert([compromissoData] as any).select().single()
       if (error) throw error
       setCompromissos(prev => [...prev, data].sort((a, b) => a.data_hora.localeCompare(b.data_hora)))
       toast({ title: "Sucesso", description: "Compromisso criado" })
