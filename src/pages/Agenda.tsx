@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Calendar, Plus, Trash2, ClipboardCheck } from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "@tanstack/react-router"
 import { useCompromissos } from "@/hooks/useCompromissos"
 import { useVistorias } from "@/hooks/useVistorias"
 
@@ -81,7 +81,7 @@ export default function Agenda() {
               <div
                 key={`${item.tipo}-${item.id}`}
                 className={`flex items-center justify-between border rounded-lg p-3 ${item.tipo === 'vistoria' ? 'cursor-pointer hover:bg-muted/50' : ''}`}
-                onClick={() => item.tipo === 'vistoria' && navigate(`/vistorias/${item.vistoriaId}`)}
+                onClick={() => item.tipo === 'vistoria' && navigate({ to: `/vistorias/${item.vistoriaId}` })}
               >
                 <div className="flex items-center gap-3">
                   {item.tipo === 'vistoria' ? <ClipboardCheck className="h-4 w-4 text-primary" /> : <Calendar className="h-4 w-4 text-muted-foreground" />}

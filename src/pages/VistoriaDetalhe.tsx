@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "@tanstack/react-router"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -10,7 +10,7 @@ import { ChecklistPanel } from "@/components/vistorias/ChecklistPanel"
 import { CobrancaPanel } from "@/components/vistorias/CobrancaPanel"
 
 export default function VistoriaDetalhe() {
-  const { id } = useParams<{ id: string }>()
+  const { id } = useParams({ from: "/_authenticated/vistorias/$id" })
   const navigate = useNavigate()
   const { ordem, loading, refetch } = useVistoria(id)
   const { updateOrdem } = useVistorias()
@@ -32,7 +32,7 @@ export default function VistoriaDetalhe() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <Button variant="ghost" size="icon" onClick={() => navigate('/vistorias')}>
+        <Button variant="ghost" size="icon" onClick={() => navigate({ to: '/vistorias' })}>
           <ArrowLeft className="h-4 w-4" />
         </Button>
         <div>

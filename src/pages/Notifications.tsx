@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "@tanstack/react-router"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -30,7 +30,7 @@ export default function Notifications() {
             <div
               key={n.id}
               className={`flex items-start justify-between border rounded-lg p-3 ${n.link ? 'cursor-pointer hover:bg-muted/50' : ''} ${!n.read ? 'bg-accent/30' : ''}`}
-              onClick={() => n.link && navigate(n.link)}
+              onClick={() => n.link && navigate({ to: n.link as string & {} })}
             >
               <div>
                 <p className="font-medium text-sm">{n.title}</p>

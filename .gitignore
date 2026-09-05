@@ -34,3 +34,9 @@ dist-ssr
 # Local files
 supabase/.temp/
 
+# TanStack Router (auto-gerado)
+src/routeTree.gen.ts
+.output
+.nitro
+.tanstack
+

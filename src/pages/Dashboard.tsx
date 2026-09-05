@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "@tanstack/react-router"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -73,7 +73,7 @@ export default function Dashboard() {
               <div
                 key={o.id}
                 className="flex items-center justify-between border rounded-lg p-3 cursor-pointer hover:bg-muted/50"
-                onClick={() => navigate(`/vistorias/${o.id}`)}
+                onClick={() => navigate({ to: `/vistorias/${o.id}` })}
               >
                 <div>
                   <p className="font-medium text-sm">{o.numero_protocolo} — {o.clientes?.nome}</p>

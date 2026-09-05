@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from '@tanstack/react-router'
 import { useAuth } from '@/hooks/useAuth'
 import { usePermissions } from '@/hooks/usePermissions'
 import { Onboarding } from '@/pages/Onboarding'
@@ -15,7 +15,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   useEffect(() => {
     if (!loading && !user) {
-      navigate('/login', { replace: true })
+      navigate({ to: '/login', replace: true })
     }
   }, [user, loading, navigate])
 

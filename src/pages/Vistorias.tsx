@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "@tanstack/react-router"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -49,7 +49,7 @@ export default function Vistorias() {
       const created = await createOrdem(form)
       setModalOpen(false)
       setForm(emptyForm)
-      if (created) navigate(`/vistorias/${(created as any).id}`)
+      if (created) navigate({ to: `/vistorias/${(created as any).id}` })
     } finally {
       setSaving(false)
     }
@@ -105,7 +105,7 @@ export default function Vistorias() {
                   <TableRow
                     key={ordem.id}
                     className="cursor-pointer hover:bg-muted/50"
-                    onClick={() => navigate(`/vistorias/${ordem.id}`)}
+                    onClick={() => navigate({ to: `/vistorias/${ordem.id}` })}
                   >
                     <TableCell className="font-medium">{ordem.numero_protocolo}</TableCell>
                     <TableCell>{tipoVistoriaLabel[ordem.tipo_vistoria]}</TableCell>
